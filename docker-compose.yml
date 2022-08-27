@@ -13,4 +13,4 @@ services:
       - KEYCLOAK_HOST=${KEYCLOAK_HOST}
       - SERVICE_TAG_VERSION=${SERVICE_TAG_VERSION}
     ports:
-      - 1004:8081
+      - 7000:8081
