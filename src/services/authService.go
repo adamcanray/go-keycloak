@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/tls"
 	"encoding/json"
+	"fmt"
 	"go-keycloak/src/errors"
 	"net/http"
 	"os"
@@ -23,6 +24,7 @@ var (
 	clientSecret string
 	realm        string
 	hostname     string
+	port         string
 )
 
 var client gocloak.GoCloak
@@ -33,8 +35,9 @@ func InitializeOauthServer() {
 	clientSecret = os.Getenv("KEYCLOAK_CLIENT_SECRET")
 	realm = os.Getenv("KEYCLOAK_REALM")
 	hostname = os.Getenv("KEYCLOAK_HOST")
+	port = os.Getenv("KEYCLOAK_PORT")
 
-	client = gocloak.NewClient(hostname, gocloak.SetAuthAdminRealms("admin/realms"), gocloak.SetAuthRealms("realms"))
+	client = gocloak.NewClient(fmt.Sprintf("%s:%s", hostname, port), gocloak.SetAuthAdminRealms("admin/realms"), gocloak.SetAuthRealms("realms"))
 }
 
 func Protect(next http.Handler) http.Handler {
