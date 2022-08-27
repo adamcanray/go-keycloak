@@ -8,6 +8,6 @@ ADD . /app
 
 RUN go build -o /go-keycloak
 
-EXPOSE 8080
+EXPOSE 8081
 
 CMD [ "/go-keycloak" ]
