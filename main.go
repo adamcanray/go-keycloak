@@ -13,8 +13,11 @@ import (
 )
 
 func main() {
-	// load .env file only on local environtment
-	if os.Getenv("MODE") == "local" {
+	log.Println("MODE:", os.Getenv("MODE"))
+	if os.Getenv("MODE") != "development" &&
+		os.Getenv("MODE") != "staging" &&
+		os.Getenv("MODE") != "sandbox" &&
+		os.Getenv("MODE") != "production" {
 		err := godotenv.Load(".env")
 		if err != nil {
 			log.Fatal("Error loading .env file", err)
