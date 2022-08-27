@@ -14,15 +14,12 @@ import (
 
 func main() {
 	// load .env file only on local environtment
-	log.Println("App Mode:", os.Getenv("MODE"))
-	// if os.Getenv("MODE") == "local" {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file", err)
+	if os.Getenv("MODE") == "local" {
+		err := godotenv.Load(".env")
+		if err != nil {
+			log.Fatal("Error loading .env file", err)
+		}
 	}
-	// }
-
-	log.Println("App Mode:", os.Getenv("MODE"))
 
 	run()
 }
