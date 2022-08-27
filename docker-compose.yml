@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  go-keycloak:
+    image: sailor1921/go-keycloak:v1.0.5
+    restart: always
+    environment:
+      - MODE=development
+      - MYSQL_PROVIDER_HOST=docker.for.mac.localhost
+      - MYSQL_PROVIDER_PORT=3306
+    ports:
+      - 1004:8080
