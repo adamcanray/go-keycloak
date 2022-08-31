@@ -2,3 +2,6 @@
 .env
 .env.dev
 .env.local
+
+# build
+go-keycloak
