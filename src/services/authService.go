@@ -37,7 +37,8 @@ func InitializeOauthServer() {
 	hostname = os.Getenv("KEYCLOAK_HOST")
 	port = os.Getenv("KEYCLOAK_PORT")
 
-	client = gocloak.NewClient(fmt.Sprintf("%s:%s", hostname, port), gocloak.SetAuthAdminRealms("admin/realms"), gocloak.SetAuthRealms("realms"))
+	// keycloak v19 takeout `auth`` path for openid-configuration endpoints
+	client = gocloak.NewClient(fmt.Sprintf("%s:%s", hostname, port), gocloak.SetAuthAdminRealms("auth/admin/realms"), gocloak.SetAuthRealms("auth/realms"))
 }
 
 func Protect(next http.Handler) http.Handler {
